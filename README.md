@@ -12,13 +12,17 @@ I recently developed the Ganiemede.E12 (see [this repo](https://github.com/ffich
 - [AZ Delivery D1 Mini](https://www.amazon.it/AZDelivery-D1-ESP8266-12E-gratuito-compatibile/dp/B01N9RXGHY/ref=pd_day0fbt_img_sccl_1/261-2056999-4152023?pd_rd_w=FEfNE&content-id=amzn1.sym.dff01a47-6d77-42b3-876e-ee53b37a92df&pf_rd_p=dff01a47-6d77-42b3-876e-ee53b37a92df&pf_rd_r=7ENAHT5VF8V5AWYKC005&pd_rd_wg=oEk6B&pd_rd_r=3f83d655-a634-436b-9ca2-9a3cd1082bc1&pd_rd_i=B0754N794H&th=1)
 
 Here is a picture of the HW setup:
-![HW_Setup](Images/HW_Setup.jpg)
+
+
+<img src="Images/HW_Setup.jpg" height="300">
 
 # SW project
 I'm a bit in love with Python recently, this was my obvious choiche for this project. I easily started from one of the Ganimede Repository examples, in particular [this one](https://github.com/ffich/Ganimede/tree/main/10_Python/040_Wireless/10_ApWebserver), which create a wifi network, start a server and load a webpage. I sliglty modified the HTML to support a second relay, and that's it. The first relay controls the "gearshift", while the other one moves or stops the car. 
 
 Here is a picture of the resulting webapage:
-![SW](Images/SW.jpg)
+
+
+<img src="Images/SW.jpg" height="400">
 
 # Testing
 We're about to start the testing phase, I'll posto some photos.
