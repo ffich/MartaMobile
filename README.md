@@ -25,4 +25,4 @@ Here is a picture of the resulting webapage:
 <img src="Images/SW.jpg" height="400">
 
 # Testing
-We're about to start the testing phase, I'll posto some photos.
+We're about to start the testing phase, I'll post some photos.
