@@ -2,7 +2,7 @@
 Public repo which contains the project of the remote control for my nephew's car.
 
 # Motivation
-My nephew got a mini electric car, that can be also remotely controlled. Unfortunately the remote was broken, so we decided to replace it with a setup able to replicate the functionalities and also capable of being controlled from a smartphone. It's a very basic remote control where you can drive the car forward and backward, while the baby still has to control the steering wheel (makes sense IMHO :-)). Forward and backward direction can be set by a very basic gearshift (on/off), while the pedal is just another on/off switch and the car doesn't have any brake. So in the end is just a matter of hang up a couple of relays with a control unit with wifi access (i.e. ESP8266 or 32). The rest is simple software stuff (despite I'm a software guy, for some strage reason I'm still fascinated by HW and consider it more difficult than SW). Is August, is hot and I got nothing to do between two swims, so why not invest a couple of hours on a new electronic project?
+My nephew got a mini electric car, that can be also remotely controlled. Unfortunately the remote was broken, so we decided to replace it with a setup able to replicate the functionalities and also capable of being controlled from a smartphone. It's a very basic remote control where you can drive the car forward and backward, right and left. So in the end is just a matter of hang up a couple of relays with a control unit with wifi access (i.e. ESP8266 or 32). The rest is simple software stuff (despite I'm a software guy, for some strage reason I'm still fascinated by HW and consider it more difficult than SW). Is August, is hot and I got nothing to do between two swims, so why not invest a couple of hours on a new electronic project?
 
 # The Car (MartaMobile)
 ...
@@ -20,7 +20,7 @@ Here is a picture of the HW setup:
 <img src="Images/HW_Setup.jpg" height="300">
 
 # SW project
-I'm a bit in love with Python in this period, so microPyhton was the obvious choiche for this project. I easily started from one of the Ganimede's Repository examples, in particular [this one](https://github.com/ffich/Ganimede/tree/main/10_Python/040_Wireless/10_ApWebserver), which create a wifi network, start a server and load a webpage. I sliglty modified the HTML and the microPython script to support a second relay, and that's it. The first relay controls the "gearshift", while the other one moves or stops the car. 
+I'm a bit in love with Python in this period, so microPyhton was the obvious choiche for this project. I easily started from one of the Ganimede's Repository examples, in particular [this one](https://github.com/ffich/Ganimede/tree/main/10_Python/040_Wireless/10_ApWebserver), which create a wifi network, start a server and load a webpage. I sliglty modified the HTML and the microPython script to support a second relay, and that's it.
 
 Here is a picture of the resulting webapage:
 
@@ -28,4 +28,4 @@ Here is a picture of the resulting webapage:
 <img src="Images/SW.jpg" height="400">
 
 # Testing
-We're about to start the testing phase, I'll post some photos.
+We're about to start the testing phase, I'll post some photos and videos.
