@@ -6,11 +6,6 @@ import gc
 gc.collect()
 from machine import Pin, Signal
 
-# Connection
-# ---------------------
-# Pin 12, 13 --> Powertrain
-# Pin 4, 5   --> Electric Steering
-
 def car_move (Dir):
     if (Dir == "FORWARD"):
         gear_a.on()
@@ -40,19 +35,26 @@ def web_page():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <style>
-html{font-family: Helvetica; display:inline-block; margin: 0px auto; text-align: center;}
-h1{color: #0F3376; padding: 3vh;}
-p{font-size: 1.5rem;}
-button{display: inline-block; background-color: #e72d3b; border: none; border-radius: 4px;
-color: white; padding: 15px 60px; text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}
+#outer
+{
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
 </style>
 <body>
-<h1>MartaMobile</h1>
-<p><a href="/?go=forward"><button class="button">Avanti</button></a></p>
-<p><a href="/?go=stop"><button class="button">STOP</button></a></p>
-<p><a href="/?go=rear"><button class="button">Retro</button></a></p>
-<p><a href="/?go=right"><button class="button">Destra</button></a></p>
-<p><a href="/?go=left"><button class="button">Sinistra</button></a></p>
+<div id="outer"><h1>MartaMobile</h1></div>
+<div id="outer"><a href="/?go=forward"><div class="outer"><button style="height: 50px; width: 120px; font-size: 1.5rem;">Avanti</button></div></div>
+<p></p>
+<div id="outer">
+    <a href="/?go=right"><div class="inner"><button style="height: 50px; width: 120px; font-size: 1.5rem;">Destra</button></div>
+    <a href="/?go=stop"><div class="inner"><button style="height: 50px; width: 120px; font-size: 1.5rem;">STOP</button></div>
+    <a href="/?go=left"><div class="inner"><button style="height: 50px; width: 120px; font-size: 1.5rem;">Sinstra</button></div>
+ </div>
+<p></p>
+<div id="outer"><a href="/?go=backward"><div class="outer"><button style="height: 50px; width: 120px; font-size: 1.5rem;">Indietro</button></div></div>
 </body>
 </html>
 """
@@ -90,15 +92,17 @@ s.listen(5)
 
 while True:
   conn, addr = s.accept()
-  #print('Got a connection from %s' % str(addr))
+  print('Got a connection from %s' % str(addr))
   request = conn.recv(1024)
-  #print('Content = %s' % str(request))
+  print('Content = %s' % str(request))
   
   # Get car direction input
   if 'GET /?go=forward' in request:
     car_move("FORWARD")
-  if 'GET /?go=rear' in request:
+    st_wheel_move("STOP")
+  if 'GET /?go=backward' in request:
     car_move("BACKWARD")
+    st_wheel_move("STOP")
   if 'GET /?go=right' in request:
     st_wheel_move("RIGHT")
   if 'GET /?go=left' in request:
