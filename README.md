@@ -5,7 +5,31 @@ Public repo which contains the project of the remote control for my nephew's car
 My nephew got a mini electric car, that can be also remotely controlled. Unfortunately the remote was broken, so we decided to replace it with a setup able to replicate the functionalities and also capable of being controlled from a smartphone. It's a very basic remote control where you can drive the car forward and backward, right and left. So in the end is just a matter of hang up a couple of relays with a control unit with wifi access (i.e. ESP8266 or 32). The rest is simple software stuff (despite I'm a software guy, for some strage reason I'm still fascinated by HW and consider it more difficult than SW). Is August, is hot and I got nothing to do between two swims, so why not invest a couple of hours on a new electronic project?
 
 # The Car (MartaMobile)
-...
+As said, the car is realy simple, but still we had to struggle a little bit to understand the wiring. Here are some photos of the "MartaMobile":
+
+The Car:
+
+
+<img src="Images/Car.jpg" height="300">
+
+
+The internal wiring:
+
+
+<img src="Images/Internal_Wiring.jpg" height="300">
+
+
+"Powertrain" motor and steering wheel connectors:
+
+
+<img src="Images/Motor&SW_Conn.jpg" height="300">
+
+
+The old remote control board:
+
+
+<img src="Images/remote.jpg" height="300">
+
 
 # Concept
 I recently developed the Ganiemede.E12 (see [this repo](https://github.com/ffich/Ganimede.E12_HW) for HW project and [this repo](https://github.com/ffich/Ganimede) for Software examples). I decied to use this as main control unit, and I needed also a couple of relays, that I easyly found on Amazon here: [MartaMobile Relays](https://www.amazon.it/gp/product/B0796SD7NX/ref=ppx_yo_dt_b_asin_image_o07_s00?ie=UTF8&psc=1). I like to use my own boards, but obviously anybody can replace the Ganimede with any other ESP8266 or ESP32 based boards, few examples:
