@@ -6,15 +6,34 @@ import gc
 gc.collect()
 from machine import Pin, Signal
 
-def get_gear_sts():
-  if gear.value() == 1:
-    return "AVANTI"
-  else:
-    return "RETRO"
+# Connection
+# ---------------------
+# Pin 12, 13 --> Powertrain
+# Pin 4, 5   --> Electric Steering
+
+def car_move (Dir):
+    if (Dir == "FORWARD"):
+        gear_a.on()
+        gear_b.off()
+    elif (Dir == "BACKWARD"):
+        gear_a.off()
+        gear_b.on()
+    else:
+        gear_a.off()
+        gear_b.off()
+        
+def st_wheel_move (Dir):
+    if (Dir == "RIGHT"):
+        st_wheel_a.on()
+        st_wheel_b.off()
+    elif (Dir == "LEFT"):
+        st_wheel_a.off()
+        st_wheel_b.on()
+    else:
+        st_wheel_a.off()
+        st_wheel_b.off()  
 
 def web_page():
-    
-    gear_state = get_gear_sts()  
     
     html ="""
 <html>
@@ -29,29 +48,27 @@ color: white; padding: 15px 60px; text-decoration: none; font-size: 30px; margin
 </style>
 <body>
 <h1>MartaMobile</h1>
-<h2>Cambio ("""+ gear_state + """)</h2>
-<p><a href="/?gear=forward"><button class="button">Avanti</button></a></p>
-<p><a href="/?gear=rear"><button class="button">Retro</button></a></p>
-<h2>Acceleratore</h2>
-<p><a href="/?gas=go"><button class="button">Marcia</button></a></p>
-<p><a href="/?gas=stop"><button class="button">STOP</button></a></p>
+<p><a href="/?go=forward"><button class="button">Avanti</button></a></p>
+<p><a href="/?go=stop"><button class="button">STOP</button></a></p>
+<p><a href="/?go=rear"><button class="button">Retro</button></a></p>
+<p><a href="/?go=right"><button class="button">Destra</button></a></p>
+<p><a href="/?go=left"><button class="button">Sinistra</button></a></p>
 </body>
 </html>
 """
-    return html  
+    return html
 
-Led = Pin(16, Pin.OUT)
-led_sts = False
-Led.off()
+gear_pin_a = Pin(12, Pin.OUT)
+gear_pin_b = Pin(13, Pin.OUT)
+gear_a = Signal(gear_pin_a, invert=True)
+gear_b = Signal(gear_pin_b, invert=True)
+car_move("STOP")
 
-gear_pin = Pin(4, Pin.OUT)
-gear = Signal(gear_pin, invert=True)
-
-gas_pin = Pin(5, Pin.OUT)
-gas = Signal(gas_pin, invert=True)
-
-gear.off()
-gas.off()
+st_wheel_pin_a = Pin(4, Pin.OUT)
+st_wheel_pin_b = Pin(5, Pin.OUT)
+st_wheel_a = Signal(st_wheel_pin_a, invert=True)
+st_wheel_b = Signal(st_wheel_pin_b, invert=True)
+st_wheel_move("STOP")
 
 ssid = "MartaMobile"
 password = "password"
@@ -77,17 +94,19 @@ while True:
   request = conn.recv(1024)
   #print('Content = %s' % str(request))
   
-  # Get gear input
-  if 'GET /?gear=forward' in request:
-    gear.on()
-  if 'GET /?gear=rear' in request:
-    gear.off()
-    
-  # Get gas input
-  if 'GET /?gas=go' in request:
-    gas.on()
-  if 'GET /?gas=stop' in request:
-    gas.off()     
+  # Get car direction input
+  if 'GET /?go=forward' in request:
+    car_move("FORWARD")
+  if 'GET /?go=rear' in request:
+    car_move("BACKWARD")
+  if 'GET /?go=right' in request:
+    st_wheel_move("RIGHT")
+  if 'GET /?go=left' in request:
+    st_wheel_move("LEFT")  
+  if 'GET /?go=stop' in request:
+    car_move("STOP")
+    st_wheel_move("STOP")
+
   response = web_page()
   conn.send(response)
   conn.close()
