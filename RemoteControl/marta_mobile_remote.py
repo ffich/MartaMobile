@@ -5,13 +5,19 @@ esp.osdebug(None)
 import gc
 gc.collect()
 from machine import Pin, Signal
+import time
+
+W_DELAY_S = 0.2
+C_DELAY_S = 0.1
 
 def car_move (Dir):
     if (Dir == "FORWARD"):
+        gear_b.off()        
+        time.sleep(C_DELAY_S)        
         gear_a.on()
-        gear_b.off()
     elif (Dir == "BACKWARD"):
         gear_a.off()
+        time.sleep(C_DELAY_S)            
         gear_b.on()
     else:
         gear_a.off()
@@ -21,13 +27,20 @@ def st_wheel_move (Dir):
     if (Dir == "RIGHT"):
         st_wheel_a.on()
         st_wheel_b.off()
+        time.sleep(W_DELAY_S)
+        st_wheel_a.off()
+        st_wheel_b.off()        
     elif (Dir == "LEFT"):
         st_wheel_a.off()
         st_wheel_b.on()
+        time.sleep(W_DELAY_S)
+        st_wheel_a.off()
+        st_wheel_b.off()        
     else:
         st_wheel_a.off()
-        st_wheel_b.off()  
+        st_wheel_b.off()
 
+        
 def web_page():
     
     html ="""
